@@ -1,0 +1,103 @@
+
+/* Селектор элемента */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    color: #222;
+    background: #f5f5f5;
+}
+
+/* Селектор идентификатора */
+#page {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+}
+
+/* Селектор класса */
+.page-header {
+    font-family: cursive;
+    font-size: 24px;
+    color: #000000;
+    text-align: center;
+    padding: 10px;
+    background-image: url('horse.jpg');
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat;
+}
+
+/* Селектор атрибута */
+input[type="text"] {
+    width: 100px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #bbb;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background: #e8eef4;
+}
+
+.form-area {
+    padding: 15px;
+    vertical-align: top;
+}
+
+.graph-area {
+    text-align: center;
+    vertical-align: top;
+}
+
+.field {
+    margin: 10px 0;
+}
+
+label {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+button {
+    padding: 8px 14px;
+    margin: 5px 5px 5px 0;
+    cursor: pointer;
+}
+
+canvas {
+    max-width: 100%;
+    border: 1px solid #ccc;
+}
+
+.error {
+    color: #b00020;
+}
+
+.hit {
+    color: #18753a;
+}
+
+.miss {
+    color: #b00020;
+}
+
+#results {
+    margin-top: 20px;
+}
+
+/* Адаптация для узкого экрана */
+@media (max-width: 650px) {
+    table, tbody, tr, td {
+        display: block;
+        width: auto;
+    }
+}

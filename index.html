@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка попадания точки</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div>
+        <div class="page-header">
+            <h1>Лабораторная работа №1</h1>
+            <p class="student_info">
+                Тарусова Мария Юрьевна      Группа: P3230       Вариант: 22724
+            </p>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <td class="form-area">
+                <h2>Ввод данных</h2>
+                
+                <form id="pointForm">
+                    <div class="field">
+                        <label for="x">Координата X:</label>
+                        <select id="x" name="x" required>
+                            <option value="" disabled selected>Выберите X</option>
+                            <option value="-3">-3</option>
+                            <option value="-2">-2</option>
+                            <option value="-1">-1</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    
+                    <div class="field">
+                        <label for="y">Координата Y:</label>
+                        <input type="text" id="y" name="y"
+                               placeholder="От -3 до 5" required>
+                    </div>
+
+                    <div class="field">
+                        <span>Радиус R:</span><br>
+
+                        <label><input type="checkbox" name="r" value="1"> 1</label>
+                        <label><input type="checkbox" name="r" value="1.5"> 1,5</label>
+                        <label><input type="checkbox" name="r" value="2"> 2</label>
+                        <label><input type="checkbox" name="r" value="2.5"> 2,5</label>
+                        <label><input type="checkbox" name="r" value="3"> 3</label>
+                    </div>
+
+                    <p id="error" class="error" role="alert"></p>
+
+                    <button type="submit">Проверить точку</button>
+                    <button type="reset">Очистить форму</button>
+                </form>
+            </td>
+
+            <td class="graph-area">
+                <h2>Координатная плоскость</h2>
+                <canvas id="canvas" width="500" height="500">
+                    Ваш браузер не поддерживает Canvas.
+                </canvas>
+                <p>Синяя область — область попадания.</p>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Результаты проверок</h2>
+
+    <button type="button" id="clearResults">Удалить историю</button>
+
+    <table id="results">
+        <thead>
+        <tr>
+            <th>Дата и время</th>
+            <th>X</th>
+            <th>Y</th>
+            <th>R</th>
+            <th>Результат</th>
+        </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody>
+    </table>
+</div>
+</body>
+</html>
