@@ -9,6 +9,9 @@ const resultsBody = document.getElementById("resultsBody");
 
 const STORAGE_KEY = "pointCheckResults";
 
+const ALLOWED_X = [-3, -2, -1, 0, 1, 2, 3, 4, 5];
+const ALLOWED_R = [1, 1.5, 2, 2.5, 3];
+
 function loadResults() {
     try {
         const saved = localStorage.getItem(STORAGE_KEY);
@@ -144,7 +147,7 @@ function renderResults() {
                 timeStyle: "medium"
             }).format(new Date(item.time)),
             String(item.x),
-            String(item.y),
+            String(item.yRaw !== undefined ? item.yRaw : item.y),
             String(item.r).replace(".", ","),
             item.hit ? "Попадание" : "Промах"
         ];
@@ -172,12 +175,17 @@ form.addEventListener("submit", function(event) {
     errorElement.textContent = "";
 
     const x = Number(xInput.value);
+    if (!ALLOWED_X.includes(x)) {
+        errorElement.textContent = "Недопустимое значение X";
+        return;
+    }
     const yText = yInput.value.trim().replace(",", ".");
     const y = Number(yText);
 
     const selectedR = Array.from(
         form.querySelectorAll('input[name="r"]:checked')
     ).map(input => Number(input.value));
+
 
     if (yText === "" || !Number.isFinite(y) || y < -3 || y > 5) {
         errorElement.textContent =
@@ -191,12 +199,19 @@ form.addEventListener("submit", function(event) {
         return;
     }
 
+    const invalidR = selectedR.some(r => !ALLOWED_R.includes(r));
+    if (invalidR) {
+        errorElement.textContent = "Обнаружены недопустимые значения R";
+        return;
+    }
+
     const timestamp = new Date().toISOString();
 
     selectedR.forEach(r => {
         results.unshift({
             x: x,
             y: y,
+            yRaw: yText,
             r: r,
             hit: checkPoint(x, y, r),
             time: timestamp
